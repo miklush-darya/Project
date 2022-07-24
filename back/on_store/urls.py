@@ -17,17 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from on_store import settings
-from user.views import UserApiView
-from prod_and_cat.views import CategoryApiView, ProductViewSet
+# from user.views import UserApiView
+# from prod_and_cat.views import CategoryApiView, ProductViewSet
 from rest_framework import routers
 
-router = routers.SimpleRouter()
-router.register(r'products', ProductViewSet)
+# router = routers.SimpleRouter()
+# router.register(r'products', ProductViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
-    # path('order/', include('order.urls')),
+    path('order/', include('order.urls')),
     path('products/', include('prod_and_cat.urls')),
     path('user/', include('user.urls')),
 ]

@@ -24,8 +24,8 @@ class CategoryApiView(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category']
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['user']
 
 
 class ShopProductApiView(viewsets.ModelViewSet):

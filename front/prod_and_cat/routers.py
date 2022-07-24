@@ -1,8 +1,8 @@
 from flask import Flask, Blueprint
-from flask import redirect, render_template, session, url_for, request
+from flask import redirect, render_template, url_for, request
 from config import Config
 
-from .forms import ProdctrForm, CategoryForm, ShopProductForm
+from .forms import ProductrForm, CategoryForm, ShopProductForm
 
 
 app = Flask(__name__)
@@ -19,10 +19,9 @@ order_blueprint = Blueprint(
 
 @order_blueprint.route("/add", methods=["GET", "POST"])
 def add_product():
-    form = ProdctrForm()
+    form = ProductrForm()
     if form.validate_on_submit():
         form_data = dict(form.data)
-
         print(form_data)
         return redirect(url_for("product"))########### на список продуктов
     return render_template("product.html", form=form)
