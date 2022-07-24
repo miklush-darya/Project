@@ -11,7 +11,6 @@ from core.models import BaseModel
 
 class Order(BaseModel):
 
-
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders")
 
     def __str__(self):
