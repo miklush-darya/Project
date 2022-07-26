@@ -21,15 +21,29 @@ from on_store import settings
 # from prod_and_cat.views import CategoryApiView, ProductViewSet
 from rest_framework import routers
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 # router = routers.SimpleRouter()
 # router.register(r'products', ProductViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
-    path('order/', include('order.urls')),
-    path('products/', include('prod_and_cat.urls')),
-    path('user/', include('user.urls')),
+    path('', include('order.urls')),
+    path('', include('prod_and_cat.urls')),
+    path('', include('user.urls')),
+
+    # path('order/', include('order.urls')),
+    # path('products/', include('prod_and_cat.urls')),
+    # path('user', include('user.urls')),
+
+    # path('api/', include('prod_and_cat.urls')),
+    # path('api/', include('user.urls')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 
