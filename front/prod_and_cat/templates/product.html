@@ -4,7 +4,7 @@
     {{ session["user"] }}
     
     <h1>Products</h1>
-    <form action="{{ url_for('product.add') }}" method="POST">
+    <form action="{{ url_for('products.add_product') }}" method="POST">
         {{ form.hidden_tag() }}
         <div>{{ form.name_product.label }}</div>
         <div>{{ form.name_product }}</div>

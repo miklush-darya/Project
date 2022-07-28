@@ -8,9 +8,6 @@ from .serializers import UserSerializer, ShopSerializer, RegisterSerializer
 
 # Create your views here.
 
-# class UserApiView(viewsets.ModelViewSet):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
 
 class UserViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
 

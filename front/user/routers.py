@@ -19,7 +19,7 @@ user_blueprint = Blueprint("user",
 # @app.route("/", methods=["GET"])
 @user_blueprint.route("/", methods=["GET"])
 def home():
-    return render_template("home.html")
+    return render_template("base.html")
 
 
 # @app.route("/login", methods=["GET", "POST"])
@@ -32,14 +32,16 @@ def login():
         user = get_current_user()
         user.store_in_session()
         return redirect(url_for("user.home")) #Vinesti
-    return render_template("login.html", form=form)
+    return render_template("userlogin.html", form=form)
 
 
 # @app.route("/logout", methods=["GET"])
 @user_blueprint.route("/logout", methods=["GET"])
 def logout():
     session.clear()
-    return redirect(url_for("login"))
+    return redirect(url_for("user.login"))
+
+
 
 
 @user_blueprint.route("/register", methods=["GET", "POST"])
@@ -52,7 +54,7 @@ def register():
         auth = access(**form.data)
         auth.store_in_session()
         return redirect(url_for("user.home"))
-    return render_template("register.html", form=form)
+    return render_template("userregister.html", form=form)
 
 
 # @user_blueprint.route("/register", methods=["GET", "POST"])

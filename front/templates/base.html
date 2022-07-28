@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        {% block title %}
+            Online Store
+        {% endblock %}
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> -->
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <!-- {% block styles %}{% endblock %} -->
+
+</head>
+
+<body>
+    <style>
+        table {width: 100%; border-spacing: 0; }
+        tr { background: #439e69 url(/media/photos/fon.jpg) repeat-y; } 
+        /* <!-- tr { background: #439e69 url("https://funart.pro/24908-zelenaja-trava-fon-63-foto.html") repeat-y; }  --> */
+        
+    </style>
+
+    <!-- {% block messages %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    {% endblock %} -->
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- fixed-top -->
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="{{url_for('user.home')}}">
+            <img src="/media/photos/logo.JPG" alt="logo" style="width:40px;">
+        </a>
+        
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <div class="col">
+                    <a class="nav-link" data-toggle="tab" href="{{url_for('user.home')}}">Home</a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <div class="col">
+                    <a class="nav-link" data-toggle="tab" href="{{url_for('products.list_product')}}">Catalog</a>
+                </div>
+            </li>
+                
+            {% if session["user"] %}
+            
+
+                <li class="nav-item">
+                    <div class="col">
+                        <a class="nav-link" data-toggle="tab" href="#">Add Shop</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <div class="col">
+                        <a class="nav-link" data-toggle="tab" href="{{ url_for('user.logout') }}">SignOut</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <div class="col">
+                        <a class="nav-link" data-toggle="tab" href="{{ url_for('user.home') }}">{{ session["user"].email }}</a>
+                    </div>
+                </li>
+
+            {% else %}
+                <li class="nav-item">
+                    <div class="col">
+                        <a class="nav-link" data-toggle="tab" href="{{url_for('user.login')}}">Login</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <div class="col">
+                        <a class="nav-link" data-toggle="tab" href="{{url_for('user.register')}}">Register</a>
+                    </div>
+                </li>
+
+            <!-- <a class="me-3 py-2 text-decoration-none"  href="{{ url_for('user.login') }}">Вход</a> -->
+            <!-- <a class="me-3 py-2 text-decoration-none" href="{{ url_for('user.register') }}">Регистрация</a> -->
+
+            {% endif %}
+        </ul>
+
+    </nav>
+
+    {% block content %}
+        <!-- <h1>Hello, world!</h1> -->
+    {% endblock %}
+
+    <!-- {% block scripts %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    {% endblock %} -->
+
+
+</body>
+
+</html>
