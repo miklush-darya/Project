@@ -1,6 +1,8 @@
+from itertools import product
 from flask import Flask, Blueprint
 from flask import redirect, render_template, url_for, request
 from config import Config
+import requests
 
 from prod_and_cat.forms import ProductrForm, CategoryForm, ShopProductForm
 from user.api import get_current_user
@@ -21,12 +23,37 @@ products_blueprint = Blueprint(
 
 API = "http://127.0.0.1:8000"
 
+#http://127.0.0.1:8000/api/products/
 
 @products_blueprint.route("/", methods=["GET"])
 def list_product():
-    # form = ProductrForm()
+    prod = requests.get(f"{API}/api/products/").json()
 
-    return render_template("prodlist.html")
+    return render_template("prodlist.html", product=prod)
+
+
+# @order_blueprint.route("/<int:id>", methods=["GET", "POST"])
+# def one_order(id):
+#     var = requests.get(f"{API}/order/api/order/").json()
+#     order = var[id - 1]
+#     form = CommentForm()
+#     if form.validate_on_submit():
+#         user = get_current_user()
+#         user.store_in_session()
+#         form_data = dict(form.data)
+#         form_data['user'] = int(user.id)
+#         form_data['order'] = order['id']
+#         form_data['is_active'] = True
+#         comment_add(**form_data)
+
+#     com = requests.get(f'{API}/order/api/order_comments/').json()
+#     comments = []
+#     for i in range(len(com)):
+#         if com[i]['order'] == order['id']:
+#             comments.append(com[i])
+
+#     return render_template("one_order.html", order=order, comments=comments, form=form)
+
 
 
 @products_blueprint.route("/", methods=["GET"])

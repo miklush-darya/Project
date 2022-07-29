@@ -1,18 +1,55 @@
 {% extends "base.html" %}
 
+
 {% block content %}
-    <!-- {{ session["user"] }} -->
+
+    {{ super() }}
     <h3>Product List</h3>
+
+    <!-- <div class="container">
+        {% for p in product %}
+            <div class="row">
+                <div class="col-sm-3">
+                        <a href="{{ url_for('products.list_product') }}">
+                            <p><h4>{{ p.name_product }}</p></h4>
+                            <p>{{ p.description }}</p>
+                            <p>{{ p.characteristics }}</p>
+                            <p>{{ p.category }}</p>
+                        </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div> -->
+    
+
+
+    <!-- {{ session["user"] }} -->
+
     <div class="container">
         <div class="row"> 
+            
+            <ul class="nav nav-tabs">
+            
+                {% for p in product %}
+                <div class="col">
+                    <!-- <a href="{{ url_for('products.list_product') }}"></a> -->
+                        <p><h3>{{ p.name_product }}</p></h3>
+                        <p>{{ p.description }}</p>
+                        <p>{{ p.characteristics }}</p>
+                        <!-- <p>{{ p.category }}</p> -->
+                        <button class="btn btn-outline-success" type="button" id="button-addon1">В корзину</button>
+                        <!-- $('.btn').button(В корзину); -->
+                    
+                    
+                </div>
+                {% endfor %}
+                <!-- <h3>Column 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> -->
+            <!-- </div> -->
+            </ul>
     
-            <div class="col-sm-3">
-            <h3>Column 1</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-            </div>
-    
-            <div class="col-sm-3">
+            <!-- <div class="col-sm-3">
             <h3>Column 2</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
             <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
@@ -28,7 +65,7 @@
                 <h3>Column 4</h3>        
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-            </div>
+            </div> -->
         </div>
     
     </div>

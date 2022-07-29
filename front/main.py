@@ -12,7 +12,9 @@ app.register_blueprint(user_blueprint)
 app.register_blueprint(products_blueprint)
 
 
-
+@app.route("/", methods=["GET"])
+def start():
+    return render_template("index.html")
 
 
 if __name__ == "__main__":

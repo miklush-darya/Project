@@ -19,7 +19,7 @@ user_blueprint = Blueprint("user",
 # @app.route("/", methods=["GET"])
 @user_blueprint.route("/", methods=["GET"])
 def home():
-    return render_template("base.html")
+    return render_template("index.html")
 
 
 # @app.route("/login", methods=["GET", "POST"])
