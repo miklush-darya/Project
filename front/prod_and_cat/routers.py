@@ -7,8 +7,7 @@ import requests
 from prod_and_cat.forms import ProductrForm, CategoryForm, ShopProductForm
 from user.api import get_current_user
 
-
-from prod_and_cat.api import add_product
+from prod_and_cat.api import add_product, add_category
 from config import Config
 
 app = Flask(__name__)
@@ -28,8 +27,28 @@ API = "http://127.0.0.1:8000"
 @products_blueprint.route("/", methods=["GET"])
 def list_product():
     prod = requests.get(f"{API}/api/products/").json()
+    categ = requests.get(f"{API}/api/category/").json()
+    return render_template("prodlist.html", product=prod, category=categ)
 
-    return render_template("prodlist.html", product=prod)
+
+@products_blueprint.route("/addproduct", methods=["GET", "POST"])
+def add_prod():
+    form = ProductrForm()
+    if form.validate_on_submit():
+        user = get_current_user()
+        user.store_in_session()
+        form_data = dict(form.data)
+        # form_data['category'] = list(form_data['category'])
+        add_product(**form_data)
+        # categ = add_category(**form.data)
+        return redirect(url_for("products.list_product"))
+    return render_template("addprod.html", form=form)
+
+
+# @products_blueprint.route("/category", methods=["GET"])
+# def list_category():
+#     categ = requests.get(f"{API}/api/category/").json()
+#     return render_template("categorylist.html", category=categ)
 
 
 # @order_blueprint.route("/<int:id>", methods=["GET", "POST"])

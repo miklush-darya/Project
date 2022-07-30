@@ -16,11 +16,13 @@ def add_product(*args, **kwargs) -> ProductsAdd:
     product = ProductsAdd(**res.json())
     return product
 
+
 def add_category(*args, **kwargs) -> CategoryAdd:
     add_category = CategoryAdd(**kwargs)
     res = requests.post(CREATE_CATEGORY_URL, json=add_category.dict())
     category = CategoryAdd(**res.json())
     return category
+
 
 def add_shopproduct(*args, **kwargs) -> ShopProductsAdd:
     add_shopproduct = ShopProductsAdd(**kwargs)
